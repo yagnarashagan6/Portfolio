@@ -74,7 +74,7 @@ const Contact = () => {
             Get In Touch
           </h2>
           <div className="underline"></div>
-          <p className="centered-text-small mt-4">
+          <p className="centered-text-small mt-6">
             Have a project in mind or want to collaborate? I'd love to hear from you. 
             Let's create something amazing together!
           </p>
