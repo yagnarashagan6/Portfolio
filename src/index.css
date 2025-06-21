@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+:root {
+  font-family: 'Inter', 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Removed color and background-color from here, let body handle it */
+  line-height: 1.6;
+  font-weight: 400;
+  color-scheme: light dark;
+  --radius: 0.5rem;
+  /* You can remove these if you primarily use Tailwind classes directly or define custom colors in tailwind.config.js */
+  --primary: #b6accc;
+  --primary-dark: #553c9a;
+  --secondary: #d9c700;
+  --secondary-dark: #9ab90f;
+  --gradient-from: #6b46c1;
+  --gradient-to: #ed64a6;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  height: 100%; /* ADDED: Ensures html takes full height */
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* REMOVED: align-items: center; - generally not desired for main content alignment */
+  margin: 0;
+  /* REMOVED: background-color: #fafafa; - let App.css manage the body background */
+  color: #1a202c;
+}
+
+a {
+  font-weight: 500;
+  color: var(--primary); /* You might want to adjust this based on your theme */
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--primary-dark); /* You might want to adjust this based on your theme */
+}
+
+/* Base typography from index.css can be kept, but ensure App.css doesn't duplicate */
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: #1a202c;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: #1a202c;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-weight: 600;
+  color: #2d3748;
+}
+
+p {
+  font-size: 1rem;
+  color: #4a5568;
+}
+
+button {
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--primary); /* Adjust as per your theme */
+  border-color: var(--primary); /* Adjust as per your theme */
+}
+
+button:focus,
+button:focus-visible {
+  outline: 3px solid rgba(85, 60, 154, 0.5); /* Adjust based on your primary color */
+  outline-offset: 2px;
+}
