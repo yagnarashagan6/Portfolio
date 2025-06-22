@@ -50,7 +50,7 @@ const Navigation = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-10">
+          <div className="hidden md:flex items-center space-x-2">
             {/* Main items (right to left) */}
             <div className="flex justify-end space-x-10">
               {navItems.slice(0, -1).map((item) => (

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Download, Github, Linkedin } from 'lucide-react';
-import '../styles/theme.css'; // Import your custom styles
+
 const Hero = () => {
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
-  const fullText = "Hi, I'm Yagnarashagan – AI & Data Science Enthusiast";
+  const fullText = "Hi, I'm Yagnarashagan –    AI & Data Science Enthusiast";
 
   useEffect(() => {
     if (currentIndex < fullText.length) {
@@ -44,24 +44,25 @@ const Hero = () => {
               Download Resume
             </a>
             
-            <div className="social-icons">
-              <a
-                href="https://github.com/yagnarashagan6"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-icon"
-              >
-                <Github size={28} />
-              </a>
-              <a
-                href="https://linkedin.com/in/yagnarashagan"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-icon"
-              >
-                <Linkedin size={28} />
-              </a>
-            </div>
+<div className="flex gap-4">
+  <a
+    href="https://github.com/yagnarashagan6"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="social-icon"
+  >
+    <Github size={28} />
+  </a>
+  <a
+    href="https://linkedin.com/in/yagnarashagan"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="social-icon"
+  >
+    <Linkedin size={28} />
+  </a>
+</div>
+
           </div>
           {/* Floating gradient balls */}
           <div className="absolute top-20 right-10 w-20 h-20 bg-gradient-to-br from-violet-400 to-purple-600 rounded-full opacity-20 animate-pulse hidden lg:block"></div>

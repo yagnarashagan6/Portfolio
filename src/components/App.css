@@ -186,6 +186,10 @@ section.achievements-section {
   width: 20px;
   height: 20px;
 }
+.project-button {
+  margin-bottom: 40px;
+}
+
 
 /* Social Icons */
 .social-icon {
@@ -211,6 +215,17 @@ section.achievements-section {
 .social-icon svg {
   width: 20px;
   height: 20px;
+}
+@media (max-width: 640px) {
+  .social-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .social-icon svg {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 /* Badges */

@@ -34,16 +34,15 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 bg-white">
+    <section id="projects" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-violet-50 via-purple-50 to-pink-50 pt-16 relative">
       <div className="container max-w-7xl px-6 md:px-12 mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
             Featured Projects
           </h2>
-
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-2 gap-8 mt-5 pt-5">
           {projects.map((project, index) => (
             <div
               key={index}
@@ -56,11 +55,12 @@ const Projects = () => {
                     <p className="text-gray-600 leading-relaxed">{project.description}</p>
                   </div>
 
-                  <div className="mb-6">
+                  {/* ✅ Moved to left and added spacing to <li> */}
+                  <div className="mb-6 text-left">
                     <h4 className="font-semibold text-gray-800 mb-3">Key Features:</h4>
                     <ul className="space-y-2">
                       {project.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-center text-gray-600">
+                        <li key={idx} className="flex items-center text-gray-600 ml-5">
                           <div className="w-2 h-2 bg-violet-500 rounded-full mr-3"></div>
                           {feature}
                         </li>
@@ -68,12 +68,13 @@ const Projects = () => {
                     </ul>
                   </div>
 
+                  {/* ✅ Changed colors for tech tags */}
                   <div className="mb-10">
                     <div className="flex flex-wrap gap-2">
                       {project.tech.map((tech, idx) => (
                         <span
                           key={idx}
-                          className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium"
+                          className="px-3 py-1 bg-gradient-to-r from-violet-200 to-pink-200 text-purple-800 font-semibold rounded-full text-sm"
                         >
                           {tech}
                         </span>

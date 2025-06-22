@@ -21,7 +21,7 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-20 bg-white">
+    <section id="experience" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-violet-50 via-purple-50 to-pink-50 pt-16 relative">
       {/* Changed className here to "container" for proper centering */}
       <div className="container">
         <div className="text-center mb-10">
@@ -65,7 +65,7 @@ const Experience = () => {
   <p className="text-gray-600 leading-relaxed mb-8">{exp.description}</p>
 
   <div>
-    <h4 className="font-semibold space-x-4 text-gray-800 mb-3">Key Areas:</h4>
+    <h4 className="font-semibold text-gray-800 mb-3">Key Areas:</h4>
     <div className="flex flex-wrap gap-2">
       {exp.skills.map((skill, idx) => (
         <span
