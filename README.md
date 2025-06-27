@@ -40,44 +40,6 @@ Whether you're a recruiter, collaborator, or a fellow developer, this site gives
 
 ---
 
-## 🚀 Getting Started
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/yagnarashagan6/Portfolio.git
-cd Portfolio
-````
-
-### 2. Install Dependencies
-
-```bash
-npm install
-```
-
-### 3. Start the Development Server
-
-```bash
-npm run dev
-```
-
-Visit: [http://localhost:5173](http://localhost:5173)
-
----
-
-## 🔧 Customization
-
-To update your personal information and projects:
-
-* **Edit** the `src/data/` files or respective components:
-
-  * `About.jsx`
-  * `Projects.jsx`
-  * `Skills.jsx`
-  * `Contact.jsx`
-
-
-
 ## 📬 Contact
 
 Feel free to reach out to me:
