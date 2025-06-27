@@ -1,8 +1,4 @@
-Thanks for sharing your portfolio repo! Here's a professional `README.md` file tailored for your **Portfolio** project hosted at [https://github.com/yagnarashagan6/Portfolio](https://github.com/yagnarashagan6/Portfolio).
 
----
-
-````markdown
 # 🌐 Yagnarashagan's Portfolio
 
 > A sleek and responsive personal portfolio website showcasing my work, skills, and contact information as a web developer and AI enthusiast.
