@@ -56,7 +56,7 @@ const Hero = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center resume-social-container">
             <a
-              href="YAGNARASHAGAN_AI&DS_312822243058_AGNI.pdf"
+              href="YAGNARASHAGAN_Resume.pdf"
               download="Yagnarashagan_Resume.pdf"
               className="resume-btn"
             >

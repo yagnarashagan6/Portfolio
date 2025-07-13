@@ -92,13 +92,10 @@ const Navigation = () => {
             >
               Contact
             </button>
-          </div>
-
-          {/* Mobile Theme Toggle - always visible on mobile */}
-          <div className="md:hidden flex items-center gap-2">
+            {/* Theme toggle always visible on desktop */}
             <button
-              className="theme-toggle"
-              id="theme-toggle"
+              className="theme-toggle ml-4"
+              id="theme-toggle-desktop"
               title="Toggles light & dark"
               aria-label="auto"
               aria-live="polite"
@@ -117,7 +114,7 @@ const Navigation = () => {
                 height="24"
                 viewBox="0 0 24 24"
               >
-                <mask className="moon" id="moon-mask">
+                <mask className="moon" id="moon-mask-desktop">
                   <rect x="0" y="0" width="100%" height="100%" fill="white" />
                   <circle cx="24" cy="10" r="6" fill="black" />
                 </mask>
@@ -126,7 +123,56 @@ const Navigation = () => {
                   cx="12"
                   cy="12"
                   r="6"
-                  mask="url(#moon-mask)"
+                  mask="url(#moon-mask-desktop)"
+                  fill="currentColor"
+                />
+                <g className="sun-beams" stroke="currentColor">
+                  <line x1="12" y1="1" x2="12" y2="3" />
+                  <line x1="12" y1="21" x2="12" y2="23" />
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                  <line x1="1" y1="12" x2="3" y2="12" />
+                  <line x1="21" y1="12" x2="23" y2="12" />
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </g>
+              </svg>
+            </button>
+          </div>
+
+          {/* Mobile Navigation - theme toggle and hamburger only on mobile */}
+          <div className="md:hidden flex items-center gap-2">
+            <button
+              className="theme-toggle"
+              id="theme-toggle-mobile"
+              title="Toggles light & dark"
+              aria-label="auto"
+              aria-live="polite"
+              onClick={() => {
+                const html = document.documentElement;
+                const currentTheme = html.getAttribute("data-theme");
+                const newTheme = currentTheme === "dark" ? "light" : "dark";
+                html.setAttribute("data-theme", newTheme);
+                localStorage.setItem("theme", newTheme);
+              }}
+            >
+              <svg
+                className="sun-and-moon"
+                aria-hidden="true"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+              >
+                <mask className="moon" id="moon-mask-mobile">
+                  <rect x="0" y="0" width="100%" height="100%" fill="white" />
+                  <circle cx="24" cy="10" r="6" fill="black" />
+                </mask>
+                <circle
+                  className="sun"
+                  cx="12"
+                  cy="12"
+                  r="6"
+                  mask="url(#moon-mask-mobile)"
                   fill="currentColor"
                 />
                 <g className="sun-beams" stroke="currentColor">
