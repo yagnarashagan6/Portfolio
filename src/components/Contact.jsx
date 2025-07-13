@@ -1,118 +1,172 @@
-import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Github, Linkedin, Send } from 'lucide-react';
+import React, { useState } from "react";
+import emailjs from "@emailjs/browser";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Github,
+  Linkedin,
+  Send,
+  XCircle,
+  CheckCircle,
+  Youtube,
+} from "lucide-react";
+
+// Notification component
+const Notification = ({ message, type, onClose, visible }) => {
+  if (!visible) return null;
+
+  const notificationClass =
+    type === "success" ? "notification-success" : "notification-error";
+  const IconComponent = type === "success" ? CheckCircle : XCircle;
+
+  return (
+    <div className={`notification ${notificationClass}`}>
+      <IconComponent className="notification-icon" />
+      <p className="notification-message">{message}</p>
+      <button onClick={onClose} className="notification-close-button">
+        <XCircle className="notification-close-icon" />
+      </button>
+    </div>
+  );
+};
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [notification, setNotification] = useState({
+    message: "",
+    type: "success",
+    visible: false,
+  });
 
+  // Handles input changes for the form fields
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
+  // Displays a notification message
+  const showNotification = (message, type) => {
+    setNotification({ message, type, visible: true });
+    setTimeout(() => {
+      setNotification({ ...notification, visible: false });
+    }, 5000); // Notification disappears after 5 seconds
+  };
+
+  // Handles form submission to send email using EmailJS browser SDK
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        alert("Thank you for your message! I'll get back to you soon.");
-        setFormData({ name: '', email: '', subject: '', message: '' });
-      } else {
-        alert('Something went wrong. Please try again.');
-      }
+      await emailjs.init("m4sVId4u98Cu1bb4S");
+      const serviceId = "service_lied2sp";
+      const templateId = "template_xudfmcc";
+      const templateParams = {
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        time: new Date().toLocaleString(),
+      };
+      await emailjs.send(serviceId, templateId, templateParams);
+      showNotification("Your message has been sent successfully!", "success");
+      setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (err) {
-      alert('Server error. Please check your connection.');
+      showNotification("Failed to send message. Please try again.", "error");
+      console.error("Email sending failed:", err);
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  // Contact information details
   const contactInfo = [
     {
       icon: Mail,
-      label: 'Email',
-      value: 'yagnarashagan2@gmail.com',
-      href: 'mailto:yagnarashagan@gmail.com'
+
+      value: "yagnarashagan2@gmail.com",
+      href: "mailto:yagnarashagan2@gmail.com",
     },
     {
       icon: Phone,
-      label: 'Phone',
-      value: '+91 6374008719',
-      href: 'tel:+919876543210'
+
+      value: "+91 6374008719",
+      href: "tel:+916374008719",
     },
     {
       icon: MapPin,
-      label: 'Location',
-      value: 'Chennai, Tamil Nadu',
-      href: '#'
-    }
+
+      value: "Chennai, Tamil Nadu, India",
+      href: "https://maps.app.goo.gl/your-location-link", // Replace with an actual map link if desired
+    },
   ];
 
+  // Social media links
   const socialLinks = [
     {
       icon: Github,
-      label: 'GitHub',
-      href: 'https://github.com/yagnarashagan6',
-      color: 'hover:text-gray-800'
+      label: "GitHub",
+      href: "https://github.com/yagnarashagan6",
     },
     {
       icon: Linkedin,
-      label: 'LinkedIn',
-      href: 'https://linkedin.com/in/yagnarashagan',
-      color: 'hover:text-blue-600'
-    }
+      label: "LinkedIn",
+      href: "https://linkedin.com/in/yagnarashagan",
+    },
+    {
+      icon: Youtube,
+      label: "YouTube",
+      href: "https://www.youtube.com/@yagnarashagan",
+    },
   ];
 
   return (
-    <section id="contact" className="py-20 bg-white">
+    <section id="contact" className="overall-section">
       <div className="container">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Get In Touch
-          </h2>
+        <div className="text-center">
+          <h2 className="section-title">Get In Touch</h2>
           <div className="underline"></div>
-          <p className="centered-text-small mt-6">
-            Have a project in mind or want to collaborate? I'd love to hear from you. 
-            Let's create something amazing together!
+          <p className="section-description">
+            Have a project in mind or want to collaborate? I'd love to hear from
+            you. Let's create something amazing together!
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Information */}
-          <div className="space-y-8">
+        <div className="contact-grid">
+          {/* Contact Information Section */}
+          <div className="contact-info-section">
             <div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-6">Let's Connect</h3>
-              <div className="space-y-4">
+              <h3 className="contact-heading">Let's Connect</h3>
+              <div className="contact-info-list">
                 {contactInfo.map((info, index) => {
                   const IconComponent = info.icon;
                   return (
                     <a
                       key={index}
                       href={info.href}
-                      className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-violet-50 transition-colors duration-200"
+                      target={info.href.startsWith("http") ? "_blank" : "_self"}
+                      rel={
+                        info.href.startsWith("http")
+                          ? "noopener noreferrer"
+                          : ""
+                      }
+                      className="contact-info-item"
                     >
-                      <div className="bg-violet-100 p-3 rounded-lg">
-                        <IconComponent className="text-violet-600 w-6 h-6" />
+                      <div className="contact-info-icon-wrapper">
+                        <IconComponent className="contact-info-icon" />
                       </div>
                       <div>
-                        <p className="text-sm text-gray-600">{info.label}</p>
-                        <p className="font-medium text-gray-800">{info.value}</p>
+                        <p className="contact-info-label">{info.label}</p>
+                        <p className="contact-info-value">{info.value}</p>
                       </div>
                     </a>
                   );
@@ -120,10 +174,10 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Social Links */}
+            {/* Social Links Section */}
             <div>
-              <h4 className="text-lg font-semibold text-gray-800 mb-8">Follow Me</h4>
-              <div className="flex space-x-4">
+              <h4 className="social-heading">Follow Me</h4>
+              <div className="social-links-list">
                 {socialLinks.map((social, index) => {
                   const IconComponent = social.icon;
                   return (
@@ -132,10 +186,10 @@ const Contact = () => {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`p-3 bg-gray-100 rounded-lg transition-colors duration-200 social-icon ${social.color}`}
+                      className={`social-link social-link-${social.label.toLowerCase()}`}
                       aria-label={social.label}
                     >
-                      <IconComponent className="w-6 h-6" />
+                      <IconComponent className="social-link-icon" />
                     </a>
                   );
                 })}
@@ -143,14 +197,16 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Contact Form */}
-          <div className="bg-gray-50 rounded-xl p-8">
-            <h3 className="text-2xl font-bold text-gray-800 mb-6">Send Message</h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                    Name
+          {/* Contact Form Section */}
+          <div className="contact-form-section">
+            <h3 className="contact-heading" id="head">
+              Send a Message
+            </h3>
+            <form onSubmit={handleSubmit} className="contact-form">
+              <div className="form-grid">
+                <div className="form-group">
+                  <label htmlFor="name" className="form-label">
+                    Your Name
                   </label>
                   <input
                     type="text"
@@ -159,13 +215,13 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-colors"
-                    placeholder="Your Name"
+                    className="form-input"
+                    placeholder="John Doe"
                   />
                 </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                    Email
+                <div className="form-group">
+                  <label htmlFor="email" className="form-label">
+                    Your Email
                   </label>
                   <input
                     type="email"
@@ -174,14 +230,14 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-colors"
-                    placeholder="your@email.com"
+                    className="form-input"
+                    placeholder="john.doe@example.com"
                   />
                 </div>
               </div>
 
-              <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+              <div className="form-group">
+                <label htmlFor="subject" className="form-label">
                   Subject
                 </label>
                 <input
@@ -191,14 +247,14 @@ const Contact = () => {
                   value={formData.subject}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-colors"
-                  placeholder="Project Discussion"
+                  className="form-input"
+                  placeholder="Regarding a project collaboration"
                 />
               </div>
 
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  Message
+              <div className="form-group">
+                <label htmlFor="message" className="form-label">
+                  Your Message
                 </label>
                 <textarea
                   id="message"
@@ -206,22 +262,39 @@ const Contact = () => {
                   value={formData.message}
                   onChange={handleInputChange}
                   required
-                  rows={5}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-colors resize-none"
-                  placeholder="Tell me about your project or idea..."
+                  rows={6}
+                  className="form-textarea"
+                  placeholder="I'd like to discuss a potential project..."
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-violet-600 to-purple-600 text-white font-semibold py-3 px-6 rounded-lg hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                className="submit-button"
               >
                 {isSubmitting ? (
-                  <span>Sending...</span>
+                  <span className="submit-button-content">
+                    <svg className="spinner" viewBox="0 0 24 24">
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                        className="spinner-path-bg"
+                      ></circle>
+                      <path
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        className="spinner-path-fg"
+                      ></path>
+                    </svg>
+                    <span>Sending...</span>
+                  </span>
                 ) : (
                   <>
-                    <Send className="w-5 h-5" />
+                    <Send className="send-icon" />
                     <span>Send Message</span>
                   </>
                 )}
@@ -230,17 +303,14 @@ const Contact = () => {
           </div>
         </div>
       </div>
-      <style jsx>{`
-        .social-icon {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: transform 0.2s ease-in-out;
-        }
-        .social-icon:hover {
-          transform: scale(1.1);
-        }
-      `}</style>
+
+      {/* Notification Component */}
+      <Notification
+        message={notification.message}
+        type={notification.type}
+        visible={notification.visible}
+        onClose={() => setNotification({ ...notification, visible: false })}
+      />
     </section>
   );
 };

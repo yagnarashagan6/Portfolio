@@ -1,89 +1,74 @@
-import React from 'react';
-import { Building2, Calendar, MapPin } from 'lucide-react';
+import React, { useEffect, useState } from "react";
+import { Building2, Calendar, MapPin } from "lucide-react";
 
 const Experience = () => {
   const experiences = [
     {
-      title: 'Network Solutions Intern',
-      company: 'Nokia Solutions and Networks',
-      duration: 'January 2025 - Present',
-      location: 'Chennai, India',
+      title: "Nokia Networks Solutions Intern",
+      company: "Nokia Networks And Solutions",
+      duration: "January 2025 - Present",
+      location: "Chennai, India",
       description:
-        'Gaining hands-on experience in telecommunications and network infrastructure. Working with cutting-edge telecom technologies and exploring AI applications in network optimization and infrastructure management.',
-      skills: [
-        'Telecommunications',
-        'Network Infrastructure',
-        'AI in Telecom',
-        'Problem Solving'
-      ],
-      color: 'from-blue-500 to-indigo-600'
-    }
+        "Gaining hands-on experience in telecommunications and network infrastructure. Working with cutting-edge telecom technologies and exploring AI applications in network optimization and infrastructure management.",
+      skills: ["Telecommunications", "Network Infrastructure"],
+    },
   ];
 
-  return (
-    <section id="experience" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-violet-50 via-purple-50 to-pink-50 pt-16 relative">
-      {/* Changed className here to "container" for proper centering */}
-      <div className="container">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
-            Experience
-          </h2>
-        </div>
+  // Animation key to force re-mount on navigation
+  const [animKey, setAnimKey] = useState(Date.now());
 
-        <div className="space-y-8">
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === "#experience") {
+        setAnimKey(Date.now());
+      }
+    };
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
+
+  return (
+    <section className="overall-section" id="experience">
+      <h2 className="section-title">Experience</h2>
+      <div className="underline"></div>
+      <div className="container">
+        <div className="experience-timeline">
           {experiences.map((exp, index) => (
             <div
-              key={index}
-              className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border-4 border-red-500"
+              key={animKey + "-" + index}
+              className={`experience-card animate-fade-in experience-card-animated`}
             >
-             <div className="p-10 min-h-[200px]">
-  <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-12">
-    <div className="flex-1">
-      <h3 className="text-2xl font-bold text-gray-800 mb-4">{exp.title}</h3>
-
-      {/* Wrap content below h3 in a div and apply mt-6 */}
-      <div className="mt-8">
-        <div className="space-x-5 mb-6 flex items-center">
-          <Building2 className="text-violet-600" size={20} />
-          <span className="text-lg font-semibold text-violet-600">{exp.company}</span>
-        </div>
-
-        <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 text-gray-600 mb-6">
-          <div className="flex items-center space-x-4">
-            <Calendar size={16} />
-            <span>{exp.duration}</span>
-          </div>
-          <div className="flex items-center space-x-1">
-            <MapPin size={16} />
-            <span>{exp.location}</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <p className="text-gray-600 leading-relaxed mb-8">{exp.description}</p>
-
-  <div>
-    <h4 className="font-semibold text-gray-800 mb-3">Key Areas:</h4>
-    <div className="flex flex-wrap gap-2">
-      {exp.skills.map((skill, idx) => (
-        <span
-          key={idx}
-          className="px-3 py-1 bg-violet-100 text-violet-700 rounded-full text-sm font-medium"
-        >
-          {skill}
-        </span>
-      ))}
-    </div>
-  </div>
-</div>
+              <div className="experience-content">
+                <h3 className="experience-title">{exp.title}</h3>
+                <div className="experience-meta">
+                  <span className="experience-info">
+                    <Building2 size={16} className="icon" /> {exp.company}
+                  </span>
+                  <span className="experience-info">
+                    <Calendar size={16} className="icon" /> {exp.duration}
+                  </span>
+                  <span className="experience-info">
+                    <MapPin size={16} className="icon" /> {exp.location}
+                  </span>
+                </div>
+                <p className="experience-description">{exp.description}</p>
+                <div className="experience-skills">
+                  {exp.skills.map((skill, idx) => (
+                    <span key={idx} className="experience-skill">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              {index < experiences.length - 1 && (
+                <div className="timeline-connector"></div>
+              )}
             </div>
           ))}
         </div>
       </div>
     </section>
   );
-}
+};
 
 export default Experience;

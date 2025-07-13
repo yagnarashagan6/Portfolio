@@ -1,78 +1,126 @@
-import React from 'react';
-import { Award, Calendar } from 'lucide-react';
+import React, { useEffect, useState } from "react";
+import { Award, Calendar as Calender } from "lucide-react";
 
 const Certifications = () => {
   const certifications = [
     {
-      title: 'NPTEL Python Programming',
-      issuer: 'NPTEL',
-      date: '2024',
-      description: 'Comprehensive Python programming course covering fundamentals to advanced concepts.',
-      color: 'from-blue-500 to-indigo-600'
+      title: "Python Programming",
+      issuer: "NPTEL",
+      date: "2024",
+      description:
+        "Mastered Python programming through a comprehensive course covering fundamentals to advanced concepts, including data structures, algorithms, and object-oriented programming.",
     },
     {
-      title: 'Cloud Computing Fundamentals',
-      issuer: 'Simplilearn',
-      date: '2024',
-      description: 'Cloud computing principles, services, and deployment models.',
-      color: 'from-cyan-500 to-blue-600'
+      title: "Cloud Computing Fundamentals",
+      issuer: "Simplilearn",
+      date: "2024",
+      description:
+        "Gained expertise in cloud computing principles, services (IaaS, PaaS, SaaS), and deployment models (public, private, hybrid).",
     },
     {
-      title: 'SQL Database Management',
-      issuer: 'SkillRack',
-      date: '2023',
-      description: 'Database design, SQL queries, and data management techniques.',
-      color: 'from-green-500 to-teal-600'
+      title: "SQL Database Management",
+      issuer: "SkillRack",
+      date: "2023",
+      description:
+        "Developed proficiency in database design, complex SQL queries, and efficient data management techniques.",
     },
-    {
-      title: 'C Programming',
-      issuer: 'SkillRack',
-      date: '2023',
-      description: 'Foundational programming concepts and C language mastery.',
-      color: 'from-purple-500 to-violet-600'
-    }
   ];
 
+  const [current, setCurrent] = useState(0);
+  const [transition, setTransition] = useState("slide-in");
+  const [cardAnim, setCardAnim] = useState("feature-center-in");
+
+  // Handle navigation with transition
+  const goTo = (idx) => {
+    if (idx === current) return;
+    setTransition(idx > current ? "slide-out-left" : "slide-out-right");
+    setTimeout(() => {
+      setCurrent(idx);
+      setTransition("slide-in");
+      setCardAnim("");
+      setTimeout(() => setCardAnim("feature-center-in"), 10);
+    }, 600); // match CSS transition duration
+  };
+
+  useEffect(() => {
+    const section = document.getElementById("certifications");
+    if (!section) {
+      setCardAnim("feature-center-in");
+      return;
+    }
+    const observer = new window.IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setCardAnim("");
+          setTimeout(() => setCardAnim("feature-center-in"), 10);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(section);
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
-    <section id="certifications" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-violet-50 via-purple-50 to-pink-50 pt-16 relative">
-      <div className="container">
-        <div className="section-header">
-          <h2 className="section-title">Certifications</h2>
-
-        </div>
-
-        <div className="certifications-grid">
-          {certifications.map((cert, index) => (
-            <div
-              key={index}
-              className="certification-card"
-              style={{ minHeight: '170px' }}
-            >
-              {/* Top gradient strip */}
-              <div className="card-gradient-strip" style={{ backgroundImage: `linear-gradient(to right, var(--${cert.color.split(' ')[0].replace('from-', '')}), var(--${cert.color.split(' ')[1].replace('to-', '')}))` }}></div>
-
-              {/* Card content */}
-              <div className="card-content">
-                <div className="card-header-row">
-                  <div className="award-icon-box" style={{ backgroundImage: `linear-gradient(to right, var(--${cert.color.split(' ')[0].replace('from-', '')}), var(--${cert.color.split(' ')[1].replace('to-', '')}))` }}>
-                    <Award size={28} color="white" />
-                  </div>
-                  <div className="title-issuer-container">
-                    <h3 className="certification-title">{cert.title}</h3>
-                    <p className="certification-issuer">{cert.issuer}</p>
-                  </div>
-                  <div className="certification-date">
-                    <Calendar size={18} className="calendar-icon" />
-                    {cert.date}
-                  </div>
-                </div>
-
-                {/* Description */}
-                <p className="certification-description">{cert.description}</p>
-              </div>
+    <section className="overall-section" id="certifications">
+      <h2 className="section-title">Certifications</h2>
+      <div className="underline"></div>
+      <div className={`certification-transition-wrapper ${transition}`}>
+        <div className={`certification-card ${cardAnim}`}>
+          <div className="certification-icon">
+            <Award size={36} />
+          </div>
+          <div className="certification-details">
+            <h3 className="certification-title">
+              {certifications[current].title}
+            </h3>
+            <div className="certification-meta">
+              <span className="certification-issuer">
+                {certifications[current].issuer}
+              </span>
+              <span className="certification-date">
+                <Calender size={22} className="calendar-icon" />
+                {certifications[current].date}
+              </span>
             </div>
-          ))}
+            <p className="certification-description">
+              {certifications[current].description}
+            </p>
+          </div>
         </div>
+      </div>
+      {/* Navigation indicators */}
+      <div
+        className="underline-indicators"
+        style={{
+          position: "absolute",
+          left: 0,
+          right: 0,
+          bottom: 48,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "1rem",
+          zIndex: 20,
+        }}
+      >
+        {certifications.map((_, idx) => (
+          <span
+            key={idx}
+            className="underline"
+            style={{
+              cursor: "pointer",
+              background:
+                idx === current
+                  ? "linear-gradient(90deg,#7c3aed,#ec4899)"
+                  : "#e5e7eb",
+              opacity: idx === current ? 1 : 0.5,
+            }}
+            onClick={() => goTo(idx)}
+          ></span>
+        ))}
       </div>
     </section>
   );

@@ -1,11 +1,11 @@
-import React from 'react';
-import Lottie from 'lottie-react';
-import { Home } from 'lucide-react';
-import animationData from '../assets/404_robot_animation.json'; // Make sure this file exists
+import React from "react";
+import Lottie from "lottie-react";
+import { Home } from "lucide-react";
+import animationData from "../assets/404_robot_animation.json"; // Make sure this file exists
 
 const NotFound = () => {
   const handleGoHome = () => {
-    window.location.pathname = '/';
+    window.location.pathname = "/";
   };
 
   return (
@@ -16,7 +16,7 @@ const NotFound = () => {
           animationData={animationData}
           loop
           autoplay
-          style={{ width: '100%', height: '100%' }}
+          style={{ width: "100%", height: "100%" }}
         />
       </div>
 

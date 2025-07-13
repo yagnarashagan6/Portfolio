@@ -1,73 +1,104 @@
-import React from 'react';
+import React, { useEffect, useRef } from "react";
+import {
+  FaPython,
+  FaJava,
+  FaReact,
+  FaHtml5,
+  FaCss3Alt,
+  FaDatabase,
+} from "react-icons/fa";
+import { SiOpenai } from "react-icons/si";
+import "./App.css"; // Import CSS
 
 const Skills = () => {
-  const technicalSkills = [
-    { name: 'Python', level: 90, color: 'from-blue-500 to-blue-600' },
-    { name: 'Java', level: 85, color: 'from-orange-500 to-red-500' },
-    { name: 'React.js', level: 80, color: 'from-cyan-500 to-blue-500' },
-    { name: 'HTML/CSS', level: 90, color: 'from-orange-500 to-pink-500' },
-    { name: 'MySQL', level: 75, color: 'from-blue-600 to-indigo-600' },
-    { name: 'Prompt Engineering', level: 95, color: 'from-violet-500 to-purple-600' },
-  ];
+  const sectionRef = useRef(null);
 
-  const softSkills = [
-    'Leadership',
-    'Communication',
-    'Problem Solving',
-    'Team Collaboration',
-    'Critical Thinking',
-    'Adaptability',
-    'Project Management',
-    'Innovation',
-  ];
+  useEffect(() => {
+    const handleAnimation = () => {
+      const section = sectionRef.current;
+      if (!section) return;
+      const icons = section.querySelectorAll(".animate-fade-in");
+      icons.forEach((icon) => {
+        icon.classList.remove("animate-fade-in");
+        // Force reflow
+        void icon.offsetWidth;
+        icon.classList.add("animate-fade-in");
+      });
+    };
+
+    // Intersection Observer to trigger animation when section is in view
+    const observer = new window.IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            handleAnimation();
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
 
   return (
-    <section id="skills" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-violet-50 via-purple-50 to-pink-50 pt-16 relative">
-      <div className="container">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Skills & Expertise
-          </h2>
+    <section className="overall-section" id="skills" ref={sectionRef}>
+      <h2 className="skills-title">Skills & Expertise</h2>
+      <div className="underline"></div>
+      <div className="circle-container">
+        {/* Eyes */}
+        <div className="smiley-eyes">
+          <span
+            className="skill-icon animate-fade-in"
+            style={{ animationDelay: "0s" }}
+          >
+            <FaPython size={64} className="python-eye" />
+          </span>
+          <span
+            className="skill-icon animate-fade-in"
+            style={{ animationDelay: "0.15s" }}
+          >
+            <FaJava size={64} className="java-eye" />
+          </span>
         </div>
 
-        <div className="bg-white p-8">
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Technical Skills */}
-            <div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-8">Technical Skills</h3>
-              <div className="space-y-6">
-                {technicalSkills.map((skill, index) => (
-                  <div key={index} className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span className="font-medium text-gray-700">{skill.name}</span>
-                      <span className="text-sm text-gray-500">{skill.level}%</span>
-                    </div>
-                    <div className="progress-bar">
-                      <div
-                        className={`h-3 rounded-full bg-gradient-to-r ${skill.color} transition-all duration-1000 ease-out`}
-                        style={{ width: `${skill.level}%` }}
-                      ></div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+        {/* Nose */}
+        <div className="smiley-nose">
+          <span
+            className="skill-icon animate-fade-in"
+            style={{ animationDelay: "0.3s" }}
+          >
+            <FaReact size={64} className="react-nose" />
+          </span>
+        </div>
 
-            {/* Soft Skills */}
-            <div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-8">Soft Skills</h3>
-              <div className="grid grid-cols-2 gap-4">
-                {softSkills.map((skill, index) => (
-                  <div
-                    key={index}
-                    className="soft-skill-card border border-violet-200"
-                  >
-                    <span className="font-medium text-gray-700">{skill}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+        {/* Mouth */}
+        <div className="smiley-mouth">
+          <span
+            className="skill-icon animate-fade-in"
+            style={{ animationDelay: "0.5s" }}
+          >
+            <SiOpenai size={64} className="prompt-mouth-icon" />
+          </span>
+          <div
+            className="dual-icon animate-fade-in"
+            style={{ animationDelay: "0.65s" }}
+          >
+            <FaHtml5 size={64} className="html-mouth" />
+            <FaCss3Alt size={64} className="css-mouth" />
           </div>
+          <span
+            className="skill-icon animate-fade-in"
+            style={{ animationDelay: "0.8s" }}
+          >
+            <FaDatabase size={64} className="mysql-mouth-icon" />
+          </span>
         </div>
       </div>
     </section>
