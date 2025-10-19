@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X, Square } from "lucide-react";
 
-const Navigation = () => {
+const Navigation = ({ audioPlaying, onStopAudio }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   // Remove React theme state, use global script for theme switching
@@ -78,6 +78,18 @@ const Navigation = () => {
                 </button>
               ))}
             </div>
+            {/* Stop Audio button - only visible when audioPlaying is true */}
+            {audioPlaying && (
+              <button
+                onClick={onStopAudio}
+                className="ml-4 px-3 py-2 rounded-md bg-red-600 hover:bg-red-700 text-white text-sm font-medium transition-all duration-200 flex items-center gap-2 shadow-sm hover:shadow-md"
+                aria-label="Stop audio"
+                title="Stop audio playback"
+              >
+                <Square size={14} className="fill-current" />
+                Stop
+              </button>
+            )}
             <button
               onClick={() => scrollToSection("contact")}
               className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
@@ -214,105 +226,20 @@ const Navigation = () => {
                   {item.label}
                 </button>
               ))}
-            </div>
-          </div>
-        )}
-      </div>
-    </nav>
-  );
-
-  return (
-    <nav className={`fixed top-0 left-0 right-0 nav-bar z-50 ${navBgColor}`}>
-      <div className="container">
-        <div className="flex justify-between items-center h-16">
-          <div className={`font-bold text-xl ${navTextColor}`}>
-            Yagnarashagan
-          </div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-2">
-            {/* Main items (right to left) */}
-            <div className="flex justify-end space-x-10">
-              {navItems.slice(0, -1).map((item) => (
+              {/* Mobile Stop Audio button */}
+              {audioPlaying && (
                 <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
-                    activeSection === item.id
-                      ? `${navTextColor} border-b-2 ${navActiveColor}`
-                      : `${navTextColor}/80 hover:${navTextColor}`
-                  }`}
+                  onClick={() => {
+                    onStopAudio();
+                    setIsOpen(false);
+                  }}
+                  className="block px-3 py-2 text-base font-medium w-full text-left bg-red-600 hover:bg-red-700 text-white transition-colors duration-200 rounded-md mt-2 flex items-center gap-2"
+                  aria-label="Stop audio"
                 >
-                  {item.label}
+                  <Square size={16} className="fill-current" />
+                  Stop Audio
                 </button>
-              ))}
-            </div>
-            {/* Contact item (far right) */}
-            <button
-              onClick={() => scrollToSection("contact")}
-              className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
-                activeSection === "contact"
-                  ? `${navTextColor} border-b-2 ${navActiveColor}`
-                  : `${navTextColor}/80 hover:${navTextColor}`
-              }`}
-            >
-              Contact
-            </button>
-            {/* Theme Toggle Button */}
-            <button
-              className={`ml-4 p-2 rounded-full border border-gray-400 ${navTextColor} bg-transparent hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors`}
-              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-              aria-label="Toggle light/dark mode"
-              title={
-                theme === "light"
-                  ? "Switch to dark mode"
-                  : "Switch to light mode"
-              }
-            >
-              {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
-            </button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center gap-2">
-            <button
-              className={`p-2 ${navTextColor} hover:${navTextColor}/80`}
-              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-              aria-label="Toggle light/dark mode"
-              title={
-                theme === "light"
-                  ? "Switch to dark mode"
-                  : "Switch to light mode"
-              }
-            >
-              {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
-            </button>
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className={`${navTextColor} hover:${navTextColor}/80 p-2`}
-            >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div className={`md:hidden nav-mobile-menu ${navBgColor}`}>
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`block px-3 py-2 text-base font-medium w-full text-left transition-colors duration-200 ${
-                    activeSection === item.id
-                      ? `${navTextColor} bg-white/10`
-                      : `${navTextColor}/80 hover:${navTextColor} hover:bg-white/10`
-                  }`}
-                >
-                  {item.label}
-                </button>
-              ))}
+              )}
             </div>
           </div>
         )}

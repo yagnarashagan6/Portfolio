@@ -29,6 +29,8 @@ const Certifications = () => {
   const [current, setCurrent] = useState(0);
   const [transition, setTransition] = useState("slide-in");
   const [cardAnim, setCardAnim] = useState("feature-center-in");
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchStartY, setTouchStartY] = useState(0);
 
   // Handle navigation with transition
   const goTo = (idx) => {
@@ -40,6 +42,38 @@ const Certifications = () => {
       setCardAnim("");
       setTimeout(() => setCardAnim("feature-center-in"), 10);
     }, 600); // match CSS transition duration
+  };
+
+  // Touch handlers for swipe
+  const handleTouchStart = (e) => {
+    setTouchStart(e.touches[0].clientX);
+    setTouchStartY(e.touches[0].clientY);
+  };
+
+  const handleTouchMove = (e) => {
+    const currentX = e.touches[0].clientX;
+    const currentY = e.touches[0].clientY;
+    const deltaX = Math.abs(currentX - touchStart);
+    const deltaY = Math.abs(currentY - touchStartY);
+    if (deltaX > deltaY && deltaX > 10) {
+      // Horizontal swipe, prevent vertical scroll
+      e.preventDefault();
+    }
+  };
+
+  const handleTouchEnd = (e) => {
+    const touchEnd = e.changedTouches[0].clientX;
+    const deltaX = touchStart - touchEnd;
+    const threshold = 50; // minimum swipe distance in pixels
+    if (Math.abs(deltaX) > threshold) {
+      if (deltaX > 0) {
+        // swipe left, next card
+        goTo((current + 1) % certifications.length);
+      } else {
+        // swipe right, previous card
+        goTo(current === 0 ? certifications.length - 1 : current - 1);
+      }
+    }
   };
 
   useEffect(() => {
@@ -67,7 +101,12 @@ const Certifications = () => {
     <section className="overall-section" id="certifications">
       <h2 className="section-title">Certifications</h2>
       <div className="underline"></div>
-      <div className={`certification-transition-wrapper ${transition}`}>
+      <div
+        className={`certification-transition-wrapper ${transition}`}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         <div className={`certification-card ${cardAnim}`}>
           <div className="certification-icon">
             <Award size={36} />

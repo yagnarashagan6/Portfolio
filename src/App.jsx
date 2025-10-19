@@ -111,11 +111,22 @@ const App = () => {
     return <NotFound />;
   }
 
+  const [audioPlaying, setAudioPlaying] = useState(false);
+
   return (
     <div className="App">
       <ThemeToggle />
-      <Navigation />
-      <Hero />
+      <Navigation
+        audioPlaying={audioPlaying}
+        onStopAudio={() => {
+          if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+          setAudioPlaying(false);
+        }}
+      />
+      <Hero
+        onAudioStart={() => setAudioPlaying(true)}
+        onAudioEnd={() => setAudioPlaying(false)}
+      />
       <About />
       <Skills />
       <Projects />

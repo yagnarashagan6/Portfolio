@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Building2, Calendar, MapPin } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Experience = () => {
   const experiences = [
@@ -29,18 +30,51 @@ const Experience = () => {
 
   return (
     <section className="overall-section" id="experience">
-      <h2 className="section-title">Experience</h2>
-      <div className="underline"></div>
       <div className="container">
-        <div className="experience-timeline">
+        <motion.h2
+          className="section-title"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          Experience
+        </motion.h2>
+        <motion.div
+          className="underline"
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          style={{ originX: 0.5 }}
+        ></motion.div>
+        <motion.div
+          className="experience-timeline"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
           {experiences.map((exp, index) => (
-            <div
+            <motion.div
               key={animKey + "-" + index}
-              className={`experience-card animate-fade-in experience-card-animated`}
+              className="experience-card experience-card-animated"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 + index * 0.2 }}
             >
               <div className="experience-content">
-                <h3 className="experience-title">{exp.title}</h3>
-                <div className="experience-meta">
+                <motion.h3
+                  className="experience-title"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.8 + index * 0.2 }}
+                >
+                  {exp.title}
+                </motion.h3>
+                <motion.div
+                  className="experience-meta"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 1.0 + index * 0.2 }}
+                >
                   <span className="experience-info">
                     <Building2 size={16} className="icon" /> {exp.company}
                   </span>
@@ -50,22 +84,44 @@ const Experience = () => {
                   <span className="experience-info">
                     <MapPin size={16} className="icon" /> {exp.location}
                   </span>
-                </div>
-                <p className="experience-description">{exp.description}</p>
-                <div className="experience-skills">
+                </motion.div>
+                <motion.p
+                  className="experience-description"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 1.2 + index * 0.2 }}
+                >
+                  {exp.description}
+                </motion.p>
+                <motion.div
+                  className="experience-skills"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 1.4 + index * 0.2 }}
+                >
                   {exp.skills.map((skill, idx) => (
-                    <span key={idx} className="experience-skill">
+                    <motion.span
+                      key={idx}
+                      className="experience-skill"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{
+                        duration: 0.4,
+                        delay: 1.6 + index * 0.2 + idx * 0.1,
+                      }}
+                      whileHover={{ scale: 1.05 }}
+                    >
                       {skill}
-                    </span>
+                    </motion.span>
                   ))}
-                </div>
+                </motion.div>
               </div>
               {index < experiences.length - 1 && (
                 <div className="timeline-connector"></div>
               )}
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

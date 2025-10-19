@@ -1,3 +1,9 @@
+@import "https://unpkg.com/open-props/easings.min.css";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
 /* Contact Info Section Dark Mode - Blue Text */
 [data-theme="dark"] #contact .contact-info-label,
 [data-theme="dark"] #contact .contact-info-value {
@@ -100,7 +106,6 @@
   color: #f3f4f6 !important;
   border-color: #ffffff !important;
 }
-@import "https://unpkg.com/open-props/easings.min.css";
 
 .sun-and-moon > :is(.moon, .sun, .sun-beams) {
   transform-origin: center;
@@ -470,8 +475,6 @@
     margin-right: 155px;
   }
 }
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
-@import "tailwindcss";
 
 /* Project Transition Animation */
 .project-transition-wrapper {
@@ -504,6 +507,44 @@
   color: #334155;
   font-size: 1.05rem;
   line-height: 1.7;
+}
+
+/* Features Table */
+.features-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.features-table th {
+  padding: 0.75rem;
+  font-weight: bold;
+  text-align: center;
+  color: #334155;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.features-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: center;
+  font-weight: 500;
+  color: #334155;
+}
+
+.features-table td:first-child {
+  padding-left: 0;
+}
+
+/* Dark mode for features table */
+[data-theme="dark"] .features-table th {
+  border-bottom: 2px solid #4b5563;
+  color: #f3f4f6;
+}
+
+[data-theme="dark"] .features-table td {
+  border-bottom: 1px solid #4b5563;
+  color: #f3f4f6;
 }
 /* Reset and Base Styles */
 *,
@@ -868,6 +909,7 @@ textarea:focus {
 
 .animate-fade-in {
   animation: fade-in 0.6s ease-out forwards;
+  padding: 10px;
 }
 
 /* Apply fade-in to sections */
@@ -951,14 +993,7 @@ section {
 .project-features h4 {
   color: #ec4899;
   font-size: 1.2rem;
-  margin-right: 1010px;
-}
-
-.project-features ul {
-  list-style: disc;
-
-  color: #334155;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 /* Tech Tags */
@@ -1036,7 +1071,6 @@ section {
 }
 
 /* Font Import (include in index.html or global CSS) */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 
 body {
   font-family: "Poppins", sans-serif;
@@ -1048,9 +1082,9 @@ body {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   border-radius: 24px;
-  padding: 40px;
+  padding: 20px 40px 40px 40px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-  max-width: 600px;
+  max-width: 700px;
   width: 100%;
   text-align: center;
   position: relative;
@@ -1067,10 +1101,10 @@ body {
 
 /* Title */
 .experience-title {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #7c3aed;
-  margin-bottom: 0.5rem;
+  margin-bottom: 2.2rem;
 }
 
 /* Meta */
@@ -1117,7 +1151,6 @@ body {
   font-size: 0.85rem;
   box-shadow: 0 2px 6px rgba(219, 39, 119, 0.3);
   transition: transform 0.2s ease;
-  margin-left: 40px;
 }
 
 .experience-skill:hover {
@@ -1329,22 +1362,24 @@ body {
   }
   .project-features {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: flex-start;
     width: 100%;
-    justify-content: flex-start;
-    gap: 1rem;
+    gap: 0.5rem;
   }
   .project-features h4 {
     margin: 0;
-    min-width: 100px;
     font-size: 1rem;
     text-align: left;
+    width: 100%;
   }
   .features-list {
     margin: 0;
-    padding-left: 1rem;
+    padding-left: 1.5rem;
     font-size: 0.95rem;
+    list-style: disc inside;
+    color: #334155;
+    line-height: 1.7;
   }
   .project-tech {
     display: flex;
@@ -1354,6 +1389,7 @@ body {
     justify-content: center;
     width: 100%;
     margin-bottom: 1rem;
+    margin-top: 10px;
   }
   .project-tech-tag {
     margin: 0;
@@ -1389,7 +1425,7 @@ body {
   }
   .experience-skills {
     gap: 0.3rem;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: center;
   }
   .experience-skill {
@@ -1404,6 +1440,7 @@ body {
 
 .shadow-sm {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  padding: 10px;
 }
 
 .shadow-md {
@@ -1659,22 +1696,62 @@ body {
 
 /* Responsive adjustments */
 @media (max-width: 600px) {
-  .skill-icon svg {
-    width: 48px !important;
-    height: 48px !important;
+  html {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-left: 0;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+
+  .skill-icon svg,
+  .dual-icon svg {
+    width: 40px !important;
+    height: 40px !important;
   }
 
   .circle-container {
-    padding: 1.5rem;
+    width: 250px;
+    height: 250px;
+    padding: 1rem;
+    margin-top: 80px;
   }
 
   .smiley-eyes {
-    gap: 1.5rem;
+    top: 15%;
+    width: 70%;
+  }
+
+  .smiley-nose {
+    top: 48%;
   }
 
   .smiley-mouth {
-    gap: 0.3rem;
-    margin-left: -20px;
+    bottom: 8%;
+    width: 90%;
+  }
+
+  .prompt-mouth-icon,
+  .mysql-mouth-icon {
+    margin-bottom: 20px;
+  }
+
+  .dual-icon {
+    gap: 0px;
   }
 }
 /* General layout */
@@ -1695,6 +1772,7 @@ body {
   text-align: center;
   font-weight: 700;
   color: #333;
+  margin-bottom: 1rem;
 }
 
 /* Grid */
@@ -1774,7 +1852,6 @@ body {
 /* App.css */
 
 /* Import Google Font - Inter */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
 
 /* Base styles */
 body {
@@ -1948,8 +2025,6 @@ body {
   margin-top: auto; /* mt-auto */
 }
 /* Import Google Font - Inter */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
-
 /* Basic Reset & Body Styles */
 body {
   margin: 0;
@@ -1986,11 +2061,16 @@ body {
   padding: 4rem 0; /* py-16 */
   background-color: #f9fafb; /* bg-gray-50 */
 }
+.des {
+  font-size: 1.05rem;
+  color: #475569;
+  margin-top: 60px;
+}
 
 /* Section Header */
 .text-center {
   text-align: center;
-  margin-bottom: 3rem; /* mb-16 */
+  margin-bottom: 1rem; /* mb-16 */
 }
 
 .section-title {
@@ -2014,6 +2094,7 @@ body {
   background-color: #7c3aed; /* bg-violet-600 */
   margin: 0 auto 1.5rem; /* mx-auto mb-6 */
   border-radius: 9999px; /* rounded-full */
+  margin-top: 10px;
 }
 
 .section-description {
@@ -2385,5 +2466,105 @@ body {
     left: 1rem;
     right: 1rem;
     bottom: 1rem;
+  }
+}
+
+/* Mobile adjustments for Experience section */
+@media (max-width: 600px) {
+  #experience.overall-section {
+    padding: 40px 15px;
+  }
+  #experience .container {
+    padding: 0 10px;
+  }
+  #experience .experience-timeline {
+    padding: 0;
+  }
+  #experience .experience-card {
+    margin-bottom: 30px;
+    padding: 20px;
+  }
+  #experience .experience-content {
+    text-align: left;
+    padding: 15px;
+  }
+  #experience .experience-meta {
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 15px;
+  }
+  #experience .experience-info {
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  #experience .experience-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+  #experience .experience-skills {
+    justify-content: flex-start;
+    gap: 8px;
+    flex-wrap: nowrap;
+  }
+  #experience .experience-skill {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+    margin-bottom: 5px;
+  }
+}
+
+/* Desktop spacing for Experience section */
+
+#experience .experience-meta {
+  gap: 25px;
+  margin-bottom: 20px;
+}
+
+#experience .experience-description {
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+
+#experience .experience-skills {
+  gap: 40px;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+/* Extra small screens adjustments */
+@media (max-width: 480px) {
+  #experience .experience-card {
+    padding: 15px;
+    margin-top: 50px;
+  }
+  #experience .experience-content {
+    padding: 10px;
+  }
+  #experience .experience-title {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+  }
+  #experience .experience-meta {
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  #experience .experience-info {
+    font-size: 0.8rem;
+  }
+  #experience .experience-description {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
+  #experience .experience-skills {
+    gap: 6px;
+  }
+  #experience .experience-skill {
+    font-size: 0.75rem;
+    padding: 4px 8px;
   }
 }
