@@ -10,7 +10,7 @@ Transforming complex data into actionable insights through cutting-edge AI solut
 
 ---
 
-## �‍💻 Professional Summary
+## 💻 Professional Summary
 
 I'm a dedicated **B.Tech AI & Data Science** student at Agni College of Technology with a **CGPA of 8.44**, specializing in developing intelligent systems that solve real-world problems. My expertise spans **Artificial Intelligence**, **Machine Learning**, **Full-Stack Development**, and **Data Analytics**.
 
@@ -42,13 +42,13 @@ I excel at building AI-powered applications that deliver measurable impact, from
 ### **Tools & Platforms**
 
 - **Cloud**: Google Cloud Platform, Firebase
-- **AI APIs**: OpenRouter API, OpenAI Integration
+- **AI APIs**: OpenRouter API, Gemma model
 - **Version Control**: Git, GitHub
 - **Development**: VS Code, Jupyter Notebooks
 
 ---
 
-## � Featured Projects
+## 📈 Featured Projects
 
 ### **🎓 EduGen AI - Personalized Learning Platform**
 
@@ -60,7 +60,7 @@ I excel at building AI-powered applications that deliver measurable impact, from
 **Key Features:**
 
 - 🤖 AI-driven personalized learning paths
-- � Interactive chatbot for real-time assistance
+-  Interactive chatbot for real-time assistance
 - 📊 Progress tracking and analytics
 - 🎯 Adaptive content recommendations
 
@@ -68,7 +68,7 @@ I excel at building AI-powered applications that deliver measurable impact, from
 
 ---
 
-### **� Stock Production Predictor**
+### **🗃️ Stock Production Optimizer**
 
 [![GitHub](https://img.shields.io/badge/GitHub-View%20Code-blue)](https://github.com/yagnarashagan6)
 
@@ -76,7 +76,7 @@ I excel at building AI-powered applications that deliver measurable impact, from
 
 **Key Features:**
 
-- � Real-time prediction algorithms
+- 🔴 Real-time prediction algorithms
 - 📊 Interactive data visualization
 - 📈 Historical trend analysis
 - 🏭 Market condition integration
@@ -128,7 +128,7 @@ I'm seeking opportunities as:
 
 I'm always excited to discuss innovative AI projects, collaborate on cutting-edge technologies, or explore new opportunities!
 
-- **📧 Email:** [Your Email]
+- **📧 Email:** [yaknarashagan2@gmail.com]
 - **💼 LinkedIn:** [https://linkedin.com/in/yagnarashagan](https://linkedin.com/in/yagnarashagan)
 - **🐙 GitHub:** [https://github.com/yagnarashagan6](https://github.com/yagnarashagan6)
 - **🌐 Portfolio:** [https://yagnarashagan-portfolio.vercel.app](https://yagnarashagan-portfolio.vercel.app)
