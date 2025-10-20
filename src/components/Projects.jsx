@@ -48,7 +48,7 @@ const Projects = () => {
           className="section-title"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
         >
           My Projects
         </motion.h2>
@@ -56,7 +56,7 @@ const Projects = () => {
           className="underline"
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
           style={{ originX: 0.5 }}
         ></motion.div>
 
@@ -65,13 +65,13 @@ const Projects = () => {
           className="project-transition-wrapper"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
           <motion.h3
             className="project-title"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
           >
             {currentProject.title}
           </motion.h3>
@@ -79,7 +79,7 @@ const Projects = () => {
             className="project-description"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
           >
             {currentProject.description}
           </motion.p>
@@ -88,19 +88,19 @@ const Projects = () => {
             className="project-features"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
           >
             <motion.table
               className="features-table"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.9 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
             >
               <thead>
                 <motion.tr
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 1 }}
+                  transition={{ duration: 0.5, delay: 0.7 }}
                 >
                   <th>Key Features</th>
                 </motion.tr>
@@ -111,7 +111,7 @@ const Projects = () => {
                     key={idx}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 1.1 + idx * 0.1 }}
+                    transition={{ duration: 0.5, delay: 0.8 + idx * 0.1 }}
                   >
                     <td>{feature}</td>
                   </motion.tr>
@@ -124,7 +124,7 @@ const Projects = () => {
             className="project-tech"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1.4 }}
+            transition={{ duration: 0.6, delay: 1 }}
           >
             {currentProject.tech.map((tech, idx) => (
               <motion.span
@@ -132,7 +132,7 @@ const Projects = () => {
                 className="project-tech-tag"
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: 1.6 + idx * 0.1 }}
+                transition={{ duration: 0.4, delay: 1.1 + idx * 0.1 }}
                 whileHover={{ scale: 1.1 }}
               >
                 {tech}
@@ -144,7 +144,7 @@ const Projects = () => {
             className="project-links"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 2 }}
+            transition={{ duration: 0.6, delay: 1.4 }}
           >
             <motion.a
               href={currentProject.github}
@@ -173,7 +173,7 @@ const Projects = () => {
           className="toggle-button-wrapper"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 2.2 }}
+          transition={{ duration: 0.6, delay: 1.6 }}
         >
           <motion.button
             className="toggle-button"

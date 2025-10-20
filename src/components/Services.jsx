@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Code2, Globe, Youtube, Link as LinkIcon } from "lucide-react";
+import { motion } from "framer-motion";
 import "./App.css";
 
 const offerings = [
@@ -53,8 +54,21 @@ const Services = () => {
   return (
     <section className="overall-section" id="services">
       <div className="offerings-container services-offerings-container">
-        <h2 className="section-title services-section-title">My Services</h2>
-        <div className="underline"></div>
+        <motion.h2
+          className="section-title services-section-title"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          My Services
+        </motion.h2>
+        <motion.div
+          className="underline"
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          style={{ originX: 0.5 }}
+        ></motion.div>
         <div className="features-grid services-features-grid">
           {offerings.map((offer, index) => {
             const Icon = offer.icon;

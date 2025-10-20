@@ -520,7 +520,7 @@
   padding: 0.75rem;
   font-weight: bold;
   text-align: center;
-  color: #334155;
+  color: #5100ff;
   border-bottom: 2px solid #e5e7eb;
 }
 
@@ -571,6 +571,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
   /* Removed stray text-align: center; */
 }
 
@@ -1105,6 +1106,8 @@ body {
   font-weight: 700;
   color: #7c3aed;
   margin-bottom: 2.2rem;
+  display: flex;
+  justify-content: center;
 }
 
 /* Meta */
@@ -1224,14 +1227,12 @@ body {
 }
 
 .certification-transition-wrapper {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
     opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform, opacity;
@@ -1279,6 +1280,41 @@ body {
     margin-bottom: 0.5rem;
     z-index: 20;
   }
+}
+
+/* Certification Indicators */
+.certification-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.indicator {
+  width: 40px;
+  height: 40px;
+  border-radius: 90%;
+  background-color: #ccc;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 40px;
+}
+@media (max-width: 900px) {
+  .indicator {
+    margin-top: -20px;
+  }
+}
+.indicator.active {
+  background-color: #7c3aed;
+}
+
+[data-theme="dark"] .indicator {
+  background-color: #555;
+}
+
+[data-theme="dark"] .indicator.active {
+  background-color: #ec4899;
 }
 
 /* Skills Section */
@@ -1611,6 +1647,25 @@ body {
 .skill-icon {
   display: inline-flex;
   transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem; /* spacing between icon and text */
+  text-align: center;
+}
+.skill-icon p {
+  margin: 0;
+  font-size: 10px;
+  color: #333;
+  font-weight: 500;
+}
+
+.skill-label {
+  font-size: 12px;
+  text-align: center;
+  margin-top: 5px;
+  color: inherit;
+  font-weight: 500;
 }
 
 .skill-icon:hover {
@@ -1623,7 +1678,7 @@ body {
   justify-content: space-between;
   width: 60%;
   position: absolute;
-  top: 20%;
+  top: 10%;
 }
 
 .python-eye {
@@ -1636,7 +1691,7 @@ body {
 
 .smiley-nose {
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: #61dafb;
@@ -1654,13 +1709,13 @@ body {
 .prompt-mouth-icon {
   color: #db2777;
   filter: drop-shadow(0 2px 8px rgba(219, 39, 119, 0.15));
-  margin-bottom: 40px; /* Added margin to lower the icon */
+  margin-bottom: 0px; /* Added margin to lower the icon */
 }
 
 .mysql-mouth-icon {
   color: #4479a1;
   filter: drop-shadow(0 2px 8px rgba(68, 121, 161, 0.15));
-  margin-bottom: 40px; /* Added margin to lower the icon */
+  margin-bottom: 70px; /* Added margin to lower the icon */
 }
 
 .html-mouth {
@@ -1675,6 +1730,7 @@ body {
   display: flex;
   gap: 8px;
   justify-content: center;
+  margin-bottom: -20px;
 }
 
 /* Animation */
@@ -1723,7 +1779,14 @@ body {
     width: 40px !important;
     height: 40px !important;
   }
-
+  .mysql-mouth-icon {
+    color: #4479a1;
+    filter: drop-shadow(0 2px 8px rgba(68, 121, 161, 0.15));
+    margin-bottom: 50px; /* Added margin to lower the icon */
+  }
+  .prompt-mouth-icon p {
+    margin-top: 40px;
+  }
   .circle-container {
     width: 250px;
     height: 250px;
@@ -1732,7 +1795,7 @@ body {
   }
 
   .smiley-eyes {
-    top: 15%;
+    top: 10%;
     width: 70%;
   }
 
@@ -1744,12 +1807,9 @@ body {
     bottom: 8%;
     width: 90%;
   }
-
-  .prompt-mouth-icon,
-  .mysql-mouth-icon {
-    margin-bottom: 20px;
+  .prompt-mouth-icon {
+    margin-bottom: 0px;
   }
-
   .dual-icon {
     gap: 0px;
   }
@@ -2546,6 +2606,8 @@ body {
   #experience .experience-title {
     font-size: 1.1rem;
     margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
   }
   #experience .experience-meta {
     gap: 8px;
@@ -2566,5 +2628,26 @@ body {
   #experience .experience-skill {
     font-size: 0.75rem;
     padding: 4px 8px;
+  }
+}
+.skill-icon .prompt {
+  font-size: 12px;
+  color: #333;
+  margin-top: 0;
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 55px;
+}
+
+.prompt-inline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+@media (max-width: 900px) {
+  .skill-icon .prompt {
+    font-size: 7px;
+    margin-bottom: 35px;
   }
 }

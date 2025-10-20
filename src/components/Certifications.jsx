@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Award, Calendar as Calender } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Certifications = () => {
   const certifications = [
@@ -100,7 +101,14 @@ const Certifications = () => {
   return (
     <section className="overall-section" id="certifications">
       <h2 className="section-title">Certifications</h2>
-      <div className="underline"></div>
+      <motion.div
+        className="underline"
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: false, amount: 0.3 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        style={{ originX: 0.5 }}
+      ></motion.div>
       <div
         className={`certification-transition-wrapper ${transition}`}
         onTouchStart={handleTouchStart}
@@ -131,34 +139,14 @@ const Certifications = () => {
         </div>
       </div>
       {/* Navigation indicators */}
-      <div
-        className="underline-indicators"
-        style={{
-          position: "absolute",
-          left: 0,
-          right: 0,
-          bottom: 48,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: "1rem",
-          zIndex: 20,
-        }}
-      >
-        {certifications.map((_, idx) => (
-          <span
-            key={idx}
-            className="underline"
-            style={{
-              cursor: "pointer",
-              background:
-                idx === current
-                  ? "linear-gradient(90deg,#7c3aed,#ec4899)"
-                  : "#e5e7eb",
-              opacity: idx === current ? 1 : 0.5,
-            }}
-            onClick={() => goTo(idx)}
-          ></span>
+      <div className="certification-indicators">
+        {certifications.map((_, index) => (
+          <button
+            key={index}
+            className={`indicator ${index === current ? "active" : ""}`}
+            onClick={() => goTo(index)}
+            aria-label={`Go to certification ${index + 1}`}
+          />
         ))}
       </div>
     </section>

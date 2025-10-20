@@ -12,11 +12,17 @@ const About = () => {
             className="text-3xl md:text-4xl font-bold text-gray-800 mb-20"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
           >
             About Me
           </motion.h2>
-          <div className="underline"></div>
+          <motion.div
+            className="underline"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            style={{ originX: 0.5 }}
+          ></motion.div>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -25,14 +31,14 @@ const About = () => {
             className="space-y-6"
             initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
           >
             <div className="text-lg text-gray-600 leading-relaxed space-y-4">
               <p className="des">
                 I'm currently pursuing my B.Tech in{" "}
                 <strong>Artificial Intelligence & Data Science</strong>
                 at Agni College of Technology with a CGPA of{" "}
-                <strong>8.51</strong>. My journey in tech is driven by a deep
+                <strong>8.44</strong>. My journey in tech is driven by a deep
                 fascination with how AI can transform the way we solve complex
                 problems.
               </p>
@@ -87,7 +93,7 @@ const About = () => {
             className="relative"
             initial={{ opacity: 0, x: 60 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
           >
             <div className="card bg-gradient-to-br from-violet-50 to-purple-50 border-3 border-color-red rounded-2xl p-8 hover:scale-105 transition-all duration-300 animate-fade-in border border-violet-200 flex flex-col items-center min-h-[420px]">
               <div className="flex flex-col items-center justify-center flex-grow text-center space-y-4">
@@ -116,7 +122,7 @@ const About = () => {
                 <div className="grid grid-cols-2 gap-4 text-center">
                   <div className="bg-white rounded-lg p-4 shadow-sm">
                     <div className="text-xl font-bold text-violet-600">
-                      8.51
+                      8.44
                     </div>
                     <div className="text-xs text-gray-600 uppercase">CGPA</div>
                   </div>

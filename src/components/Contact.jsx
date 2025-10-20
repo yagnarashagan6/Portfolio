@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
+import { motion } from "framer-motion";
 import {
   Mail,
   Phone,
@@ -133,24 +134,52 @@ const Contact = () => {
     <section id="contact" className="overall-section">
       <div className="container">
         <div className="text-center">
-          <h2 className="section-title">Get In Touch</h2>
-          <div className="underline"></div>
-          <p className="section-description">
+          <motion.h2
+            className="section-title"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            Get In Touch
+          </motion.h2>
+          <motion.div
+            className="underline"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            style={{ originX: 0.5 }}
+          ></motion.div>
+          <motion.p
+            className="section-description"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
             Have a project in mind or want to collaborate? I'd love to hear from
             you. Let's create something amazing together!
-          </p>
+          </motion.p>
         </div>
 
-        <div className="contact-grid">
+        <motion.div
+          className="contact-grid"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
           {/* Contact Information Section */}
-          <div className="contact-info-section">
+          <motion.div
+            className="contact-info-section"
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
             <div>
               <h3 className="contact-heading">Let's Connect</h3>
               <div className="contact-info-list">
                 {contactInfo.map((info, index) => {
                   const IconComponent = info.icon;
                   return (
-                    <a
+                    <motion.a
                       key={index}
                       href={info.href}
                       target={info.href.startsWith("http") ? "_blank" : "_self"}
@@ -160,6 +189,9 @@ const Contact = () => {
                           : ""
                       }
                       className="contact-info-item"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.7 + index * 0.1 }}
                     >
                       <div className="contact-info-icon-wrapper">
                         <IconComponent className="contact-info-icon" />
@@ -168,7 +200,7 @@ const Contact = () => {
                         <p className="contact-info-label">{info.label}</p>
                         <p className="contact-info-value">{info.value}</p>
                       </div>
-                    </a>
+                    </motion.a>
                   );
                 })}
               </div>
@@ -181,30 +213,43 @@ const Contact = () => {
                 {socialLinks.map((social, index) => {
                   const IconComponent = social.icon;
                   return (
-                    <a
+                    <motion.a
                       key={index}
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
                       className={`social-link social-link-${social.label.toLowerCase()}`}
                       aria-label={social.label}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.6, delay: 1 + index * 0.1 }}
                     >
                       <IconComponent className="social-link-icon" />
-                    </a>
+                    </motion.a>
                   );
                 })}
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Contact Form Section */}
-          <div className="contact-form-section">
+          <motion.div
+            className="contact-form-section"
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
             <h3 className="contact-heading" id="head">
               Send a Message
             </h3>
             <form onSubmit={handleSubmit} className="contact-form">
               <div className="form-grid">
-                <div className="form-group">
+                <motion.div
+                  className="form-group"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.8 }}
+                >
                   <label htmlFor="name" className="form-label">
                     Your Name
                   </label>
@@ -218,8 +263,13 @@ const Contact = () => {
                     className="form-input"
                     placeholder="John Doe"
                   />
-                </div>
-                <div className="form-group">
+                </motion.div>
+                <motion.div
+                  className="form-group"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.9 }}
+                >
                   <label htmlFor="email" className="form-label">
                     Your Email
                   </label>
@@ -233,10 +283,15 @@ const Contact = () => {
                     className="form-input"
                     placeholder="john.doe@example.com"
                   />
-                </div>
+                </motion.div>
               </div>
 
-              <div className="form-group">
+              <motion.div
+                className="form-group"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1 }}
+              >
                 <label htmlFor="subject" className="form-label">
                   Subject
                 </label>
@@ -250,9 +305,14 @@ const Contact = () => {
                   className="form-input"
                   placeholder="Regarding a project collaboration"
                 />
-              </div>
+              </motion.div>
 
-              <div className="form-group">
+              <motion.div
+                className="form-group"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.1 }}
+              >
                 <label htmlFor="message" className="form-label">
                   Your Message
                 </label>
@@ -266,12 +326,17 @@ const Contact = () => {
                   className="form-textarea"
                   placeholder="I'd like to discuss a potential project..."
                 />
-              </div>
+              </motion.div>
 
-              <button
+              <motion.button
                 type="submit"
                 disabled={isSubmitting}
                 className="submit-button"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 1.2 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 {isSubmitting ? (
                   <span className="submit-button-content">
@@ -298,10 +363,10 @@ const Contact = () => {
                     <span>Send Message</span>
                   </>
                 )}
-              </button>
+              </motion.button>
             </form>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* Notification Component */}

@@ -7,7 +7,8 @@ import {
   FaCss3Alt,
   FaDatabase,
 } from "react-icons/fa";
-import { SiOpenai } from "react-icons/si";
+import { SiOpenai, SiMysql } from "react-icons/si";
+import { motion } from "framer-motion";
 import "./App.css"; // Import CSS
 
 const Skills = () => {
@@ -49,8 +50,21 @@ const Skills = () => {
 
   return (
     <section className="overall-section" id="skills" ref={sectionRef}>
-      <h2 className="skills-title">Skills & Expertise</h2>
-      <div className="underline"></div>
+      <motion.h2
+        className="skills-title"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        Skills & Expertise
+      </motion.h2>
+      <motion.div
+        className="underline"
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        style={{ originX: 0.5 }}
+      ></motion.div>
       <div className="circle-container">
         {/* Eyes */}
         <div className="smiley-eyes">
@@ -59,12 +73,15 @@ const Skills = () => {
             style={{ animationDelay: "0s" }}
           >
             <FaPython size={64} className="python-eye" />
+            <p>python</p>
           </span>
+
           <span
             className="skill-icon animate-fade-in"
             style={{ animationDelay: "0.15s" }}
           >
             <FaJava size={64} className="java-eye" />
+            <p>java</p>
           </span>
         </div>
 
@@ -75,6 +92,7 @@ const Skills = () => {
             style={{ animationDelay: "0.3s" }}
           >
             <FaReact size={64} className="react-nose" />
+            <p>react</p>
           </span>
         </div>
 
@@ -84,20 +102,29 @@ const Skills = () => {
             className="skill-icon animate-fade-in"
             style={{ animationDelay: "0.5s" }}
           >
-            <SiOpenai size={64} className="prompt-mouth-icon" />
+            <div className="prompt-inline">
+              <SiOpenai size={64} className="prompt-mouth-icon" />
+              <p className="prompt">AI prompts</p>
+            </div>
           </span>
           <div
             className="dual-icon animate-fade-in"
             style={{ animationDelay: "0.65s" }}
           >
-            <FaHtml5 size={64} className="html-mouth" />
-            <FaCss3Alt size={64} className="css-mouth" />
+            <div className="skill-icon">
+              <FaHtml5 size={64} className="html-mouth" />
+              <p style={{ fontSize: "10px", color: "#333" }}>HTML</p>
+            </div>
+            <div className="skill-icon">
+              <FaCss3Alt size={64} className="css-mouth" />
+              <p style={{ fontSize: "10px", color: "#333" }}>CSS</p>
+            </div>
           </div>
           <span
             className="skill-icon animate-fade-in"
             style={{ animationDelay: "0.8s" }}
           >
-            <FaDatabase size={64} className="mysql-mouth-icon" />
+            <SiMysql size={64} className="mysql-mouth-icon" />
           </span>
         </div>
       </div>

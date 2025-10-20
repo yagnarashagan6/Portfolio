@@ -35,7 +35,7 @@ const Experience = () => {
           className="section-title"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
         >
           Experience
         </motion.h2>
@@ -43,14 +43,14 @@ const Experience = () => {
           className="underline"
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
           style={{ originX: 0.5 }}
         ></motion.div>
         <motion.div
           className="experience-timeline"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
         >
           {experiences.map((exp, index) => (
             <motion.div
@@ -58,14 +58,14 @@ const Experience = () => {
               className="experience-card experience-card-animated"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 + index * 0.2 }}
+              transition={{ duration: 0.5, delay: 0.5 + index * 0.2 }}
             >
               <div className="experience-content">
                 <motion.h3
                   className="experience-title"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 0.8 + index * 0.2 }}
+                  transition={{ duration: 0.5, delay: 0.7 + index * 0.2 }}
                 >
                   {exp.title}
                 </motion.h3>
@@ -73,7 +73,7 @@ const Experience = () => {
                   className="experience-meta"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 1.0 + index * 0.2 }}
+                  transition={{ duration: 0.5, delay: 0.9 + index * 0.2 }}
                 >
                   <span className="experience-info">
                     <Building2 size={16} className="icon" /> {exp.company}
@@ -89,7 +89,7 @@ const Experience = () => {
                   className="experience-description"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 1.2 + index * 0.2 }}
+                  transition={{ duration: 0.5, delay: 1.1 + index * 0.2 }}
                 >
                   {exp.description}
                 </motion.p>
@@ -97,7 +97,7 @@ const Experience = () => {
                   className="experience-skills"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 1.4 + index * 0.2 }}
+                  transition={{ duration: 0.5, delay: 1.3 + index * 0.2 }}
                 >
                   {exp.skills.map((skill, idx) => (
                     <motion.span
@@ -107,7 +107,7 @@ const Experience = () => {
                       whileInView={{ opacity: 1, scale: 1 }}
                       transition={{
                         duration: 0.4,
-                        delay: 1.6 + index * 0.2 + idx * 0.1,
+                        delay: 1.5 + index * 0.2 + idx * 0.1,
                       }}
                       whileHover={{ scale: 1.05 }}
                     >
