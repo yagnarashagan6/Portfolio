@@ -1,4 +1,4 @@
-# 🚀 Yagnarashagan - AI & Data Science Engineer
+# 🚀 Yagnarashagan - Full-Stack Developer
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-Live-brightgreen)](https://yagnarashagan-portfolio.vercel.app)
 [![GitHub](https://img.shields.io/badge/GitHub-Profile-blue)](https://github.com/yagnarashagan6)
