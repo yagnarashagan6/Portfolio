@@ -72,33 +72,43 @@ const Hero = ({ onAudioStart, onAudioEnd }) => {
 
       const utter = new window.SpeechSynthesisUtterance(introText);
       utter.lang = "en-US";
-      utter.rate = 1.0;
-      utter.pitch = 1.1;
+      utter.rate = 0.95; // Slightly slower for more natural speech
+      utter.pitch = 0.9; // Lower pitch for male voice
       utter.volume = 1.0;
 
       // Select voice: Try multiple strategies for cross-browser compatibility
       if (voices.length > 0) {
-        // Strategy 1: Look for Google voices (Chrome/Edge)
-        const googleVoices = voices.filter(
-          (v) => v.lang === "en-US" && v.name.toLowerCase().includes("google")
+        // Strategy 1: Look for Microsoft Mark voice specifically
+        const microsoftMarkVoices = voices.filter((v) =>
+          v.name.toLowerCase().includes("microsoft mark")
         );
 
-        // Strategy 2: Look for natural/female voices
-        const naturalVoices = voices.filter(
+        // Strategy 2: Look for Google male voices (Chrome/Edge)
+        const googleMaleVoices = voices.filter(
           (v) =>
             v.lang === "en-US" &&
-            (v.name.toLowerCase().includes("female") ||
-              v.name.toLowerCase().includes("woman") ||
+            v.name.toLowerCase().includes("google") &&
+            (v.name.toLowerCase().includes("male") ||
+              v.name.toLowerCase().includes("man"))
+        );
+
+        // Strategy 3: Look for male voices
+        const maleVoices = voices.filter(
+          (v) =>
+            v.lang === "en-US" &&
+            (v.name.toLowerCase().includes("male") ||
+              v.name.toLowerCase().includes("man") ||
               v.name.toLowerCase().includes("natural"))
         );
 
-        // Strategy 3: Use any en-US voice
+        // Strategy 4: Use any en-US voice
         const enUsVoices = voices.filter((v) => v.lang === "en-US");
 
-        // Priority: Google > Natural > en-US > Any voice
+        // Priority: Microsoft Mark > Google Male > Male > en-US > Any voice
         utter.voice =
-          googleVoices[0] ||
-          naturalVoices[0] ||
+          microsoftMarkVoices[0] ||
+          googleMaleVoices[0] ||
+          maleVoices[0] ||
           enUsVoices[0] ||
           voices[0] ||
           null;
